@@ -11,3 +11,19 @@ spring:
       max-lifetime: 1800000
       connection-timeout: 30000
       pool-name: DatebookHikariCP
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: true
+  freemarker:
+    charset: UTF-8
+    content-type: text/html;charset=UTF-8
+    expose-request-attributes: true
+    expose-session-attributes: true
+    expose-spring-macro-helpers: true
+    suffix: .ftl
+    settings:
+      datetime_format: yyyy-MM-dd HH:mm:ss
+      default_encoding: UTF-8
+      auto_import: catalog/layout/catalog_layout.ftl as layout
