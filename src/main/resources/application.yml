@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:mysql://47.106.86.98:3306/society?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: society
+    password: szdaxh
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      connection-test-query: SELECT 1
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      pool-name: DatebookHikariCP
