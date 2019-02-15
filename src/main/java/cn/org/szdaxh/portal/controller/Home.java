@@ -20,4 +20,7 @@ public class Home {
         return "/catalog/index";
     }
 
+    @GetMapping("/test")
+    public String test() {return "/catalog/test/test";}
+
 }

@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+body {
+    background-color: rgba(242, 242, 242, 1);
+    font-size: 14px;
+}
+
+.min-vh-80 {
+    min-height: 80vh!important
+}

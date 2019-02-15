@@ -26,4 +26,4 @@ spring:
     settings:
       datetime_format: yyyy-MM-dd HH:mm:ss
       default_encoding: UTF-8
-      auto_import: catalog/layout/catalog_layout.ftl as layout
+      auto_import: catalog/layout/catalog_layout.ftl as catalog,catalog/common/common.ftl as common
