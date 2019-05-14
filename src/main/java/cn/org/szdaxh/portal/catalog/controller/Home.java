@@ -1,4 +1,4 @@
-package cn.org.szdaxh.portal.controller;
+package cn.org.szdaxh.portal.catalog.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
