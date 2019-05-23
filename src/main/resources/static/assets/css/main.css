@@ -1,10 +1,59 @@
 @charset "UTF-8";
 
 body {
-    background-color: rgba(242, 242, 242, 1);
-    font-size: 14px;
+  background-color: rgba(242, 242, 242, 1);
+  font-size: 14px;
+  overflow-x: hidden;
 }
 
 .min-vh-80 {
-    min-height: 500vh!important
+  min-height: 500vh!important
+}
+
+.card-default {
+  height: 300px;
+}
+
+.card-height-280 {
+  height: 280px;
+}
+
+.carousel-height {
+  height: 400px;
+}
+
+.list-item {
+  height:31px;
+  line-height:31px;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  overflow:hidden;
+  font-size: 14px;
+}
+
+.list-item > a:link, a:visited {
+  color: #696969;
+  text-decoration: none;
+  transition: all 0.3s ease 0s;
+}
+
+.list-item > a:hover {
+  color: #cc0001;
+  text-decoration: none;
+  transition: all 0.3s ease 0s;
+}
+
+.text-color {
+  color: #696969;
+  height:25px;
+  line-height:25px;
+  font-size: 14px;
+}
+
+.btn-height-80 {
+  height: 80px;
+}
+
+.btn-height-40 {
+  height: 40px;
 }

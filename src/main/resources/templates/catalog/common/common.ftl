@@ -1,3 +1,6 @@
-<#macro table id>
-  <div id="${id}">测试1111</div>
+<#macro list notices>
+ <#include "notice.ftl">
 </#macro>
+
+<#include "card.ftl">
+<#include "carousel.ftl">

@@ -13,8 +13,8 @@
 </head>
 <body class="bg-light">
 <#include "header.ftl">
-<main role="main" class="container min-vh-100">
-    <#nested >
+<main role="main" class="container min-vh-100 p-0">
+  <#nested >
 </main>
 
 <#include "footer.ftl">
