@@ -12,11 +12,15 @@
 </head>
 <body class="bg-light">
 <#include "header.ftl">
-<main role="main" class="container min-vh-100 p-0">
-  <#nested >
-</main>
+<main role="main" class="container-fluid p-0" >
+  <div class="row min-vh-100" >
+    <div class="col-md-2 bg-light p-0">
+        <#include "nav.ftl">
+    </div>
+    <div class="col-md-10"><#nested ></div>
+  </div>
 
-<#include "footer.ftl">
+</main>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
   integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
@@ -27,5 +31,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
   integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
 </script>
+<script src="${basePath}/assets/js/nav_bar.js"></script>
+<script src="${basePath}/assets/js/main.js"></script>
 </html>
 </#macro>

@@ -1,5 +1,6 @@
 package cn.org.szdaxh.portal.catalog.controller;
 
+import cn.org.szdaxh.portal.admin.controller.BaseController;
 import cn.org.szdaxh.portal.common.enums.NoticeTypeEnum;
 import cn.org.szdaxh.portal.common.vo.NoticeVO;
 import org.springframework.stereotype.Controller;
@@ -19,7 +20,7 @@ import java.util.List;
  * @date 2019/1/29 15:26
  */
 @Controller
-public class Home {
+public class Home extends BaseController {
 
     @GetMapping("/")
     public String index() {

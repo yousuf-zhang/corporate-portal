@@ -11,6 +11,8 @@ spring:
       max-lifetime: 1800000
       connection-timeout: 30000
       pool-name: DatebookHikariCP
+  session:
+    timeout: PT15M
   jpa:
     hibernate:
       ddl-auto: update
@@ -22,8 +24,9 @@ spring:
     expose-request-attributes: true
     expose-session-attributes: true
     expose-spring-macro-helpers: true
+    request-context-attribute: request
     suffix: .ftl
     settings:
       datetime_format: yyyy-MM-dd HH:mm:ss
       default_encoding: UTF-8
-      auto_import: catalog/layout/catalog_layout.ftl as catalog,catalog/common/common.ftl as common
+      auto_import: catalog/layout/catalog_layout.ftl as catalog,common/common.ftl as common,admin/layout/admin_layout.ftl as admin

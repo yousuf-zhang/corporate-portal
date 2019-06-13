@@ -6,7 +6,7 @@
       </@common.card>
     </div>
     <div class="col-sm-6">
-      <@common.card "测试", "border-light carousel-height", "">
+      <@common.card "测试", "carousel-height", "">
       </@common.card>
     </div>
   </div>
@@ -22,18 +22,19 @@
         <div class="row pb-2">
           <div class="col-sm-4">
             <a href="#">
-              <img class="img-thumbnail" style="height: 100px;" src="${ctx}/assets/images/periodical/20164990656.jpg">
+              <img class="img-thumbnail" style="height: 100px;" src="${basePath}/assets/images/periodical/20164990656
+              .jpg">
             </a>
           </div>
           <div class="col-sm-4">
             <a href="#">
-              <img class="img-thumbnail" style="height: 100px;" src="${ctx}/assets/images/periodical/20164991311.jpg">
+              <img class="img-thumbnail" style="height: 100px;" src="${basePath}/assets/images/periodical/20164991311.jpg">
             </a>
 
           </div>
           <div class="col-sm-4">
             <a href="#">
-              <img class="img-thumbnail" style="height: 100px;" src="${ctx}/assets/images/periodical/201641291924.jpg">
+              <img class="img-thumbnail" style="height: 100px;" src="${basePath}/assets/images/periodical/201641291924.jpg">
             </a>
           </div>
         </div>
@@ -75,7 +76,7 @@
     <div class="col-sm-8 pr-0">
       <@common.card "岗位培训" "", "">
         <div class="text-color">
-          <img src="${ctx}/assets/images/img_px.jpg" class="w-100 p-0 m-0 mb-2 img-fluid" >
+          <img src="${basePath}/assets/images/img_px.jpg" class="w-100 p-0 m-0 mb-2 img-fluid" >
           名称：深圳市档案信息管理培训中心中心办学范围：档案、英语、文秘、经济管理、行政法规培训学校类型：成人非学历教育主管业务部门：
           深圳市教育局发证机关：深圳市教育局中心简介 深圳市档案信息管理培训中心于2001年经由市教育行政管理部门审批正式成立。深...
         </div>
@@ -83,7 +84,7 @@
     </div>
     <div class="col-sm-4">
       <@common.card "职称评定" "", "">
-        <img class="img-fluid pb-2" style="width: 100%" src="${ctx}/assets/images/img_zc.jpg">
+        <img class="img-fluid pb-2" style="width: 100%" src="${basePath}/assets/images/img_zc.jpg">
         <div class="row  pb-2">
           <div class="col-sm-6">
             <button type="button" class="btn btn-secondary btn-lg btn-block btn-height-30">
@@ -126,7 +127,7 @@
   <div class="row mt-2">
     <div class="col-sm-6 pr-0">
       <@common.card "中介备案" "", "">
-        <img src="${ctx}/assets/images/intermediary.jpg" class="w-100 p-0 m-0 mb-2" >
+        <img src="${basePath}/assets/images/intermediary.jpg" class="w-100 p-0 m-0 mb-2" >
         <div class="row ">
           <div class="col-sm-3 ">
             <button type="button" class="btn btn-secondary btn-lg btn-block btn-height-80">

@@ -9,7 +9,7 @@
   <div class="carousel-inner">
     <#list carousels as carouse>
       <div class="carousel-item <#if carouse_index = 0>active</#if>">
-        <img class="d-block w-100 ${imgClass}" src="${ctx}/assets/images/${carouse.url}">
+        <img class="d-block w-100 ${imgClass}" src="${basePath}/assets/images/${carouse.url}">
         <div class="carousel-caption d-none d-sm-block">
           <p>${carouse.title}</p>
         </div>
