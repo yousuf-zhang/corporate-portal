@@ -20,4 +20,6 @@ public interface ModuleService {
     void delete(Module module);
 
     List<ModuleVO> findModuleVOS();
+
+    List<ModuleVO> findModuleBreadcrumb(String url);
 }

@@ -1,5 +1,6 @@
 package cn.org.szdaxh.portal.admin.controller;
 
+import cn.org.szdaxh.portal.common.BaseController;
 import cn.org.szdaxh.portal.common.vo.UserSession;
 import cn.org.szdaxh.portal.service.LoginService;
 import cn.org.szdaxh.portal.service.ModuleService;

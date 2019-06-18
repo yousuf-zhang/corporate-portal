@@ -7,6 +7,7 @@ import cn.org.szdaxh.portal.common.vo.ModuleVO;
 import com.google.common.collect.Lists;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
@@ -48,6 +49,38 @@ public class ModuleServiceImpl implements ModuleService {
             navBars.get(0).setExpanded(true);
         }
         return navBars;
+    }
+
+    @Override
+    public List<ModuleVO> findModuleBreadcrumb(String url) {
+        List<Module> modules = moduleRepo.findAll();
+        List<ModuleVO> moduleVOS = Lists.newArrayList();
+        ModuleVO moduleVO = findModuleVO(url, modules);
+        moduleVOS.add(moduleVO);
+        findModuleVO(moduleVO, modules, moduleVOS);
+        Collections.reverse(moduleVOS);
+        return moduleVOS;
+    }
+
+    private void findModuleVO(ModuleVO moduleVO, List<Module> modules, List<ModuleVO> moduleVOS) {
+        if (!Objects.equals(moduleVO.getParentId(), 0L)) {
+            ModuleVO vo = new ModuleVO().convertBack(modules.stream()
+                    .filter(module -> Objects.equals(module.getId(), moduleVO.getParentId()))
+                    .findFirst().orElseThrow(() -> new RuntimeException("获取模块异常")));
+            moduleVOS.add(vo);
+            findModuleVO(vo, modules, moduleVOS);
+        }
+    }
+
+    private ModuleVO findModuleVO(String url, List<Module> modules) {
+        return new ModuleVO()
+                .convertBack(modules.stream()
+                .filter(module -> Objects.equals(url, module.getUrl()))
+                .findFirst()
+                .orElse(modules.stream()
+                .filter(module -> module.getParentId().equals(0L))
+                .min(Comparator.comparing(Module::getOrdinal))
+                .orElseThrow(() -> new RuntimeException("获取模块失败"))));
     }
 
     private void findParentModuleVO(List<Module> modules, List<ModuleVO> navBars) {

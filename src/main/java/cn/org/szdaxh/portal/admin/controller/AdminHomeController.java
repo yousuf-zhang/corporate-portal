@@ -1,6 +1,6 @@
 package cn.org.szdaxh.portal.admin.controller;
 
-import cn.org.szdaxh.portal.service.ModuleService;
+import cn.org.szdaxh.portal.common.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

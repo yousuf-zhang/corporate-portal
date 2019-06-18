@@ -1,5 +1,8 @@
 (function (window) {
     "use strict";
     var App = window.App;
-    var navBar = new App.NavBar("#accordionExample");
+
+    // new App.NavBar("#accordionExample");
+
+    // new App.Ueditor("editor");
 })(window);

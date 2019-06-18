@@ -25,10 +25,17 @@ repositories {
 }
 
 dependencies {
+
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-freemarker'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
     implementation 'com.google.guava:guava:27.1-jre'
+    implementation 'commons-fileupload:commons-fileupload:1.4'
+    implementation 'commons-codec:commons-codec:1.12'
+    implementation 'org.json:json:20180813'
+
+
     runtimeOnly 'mysql:mysql-connector-java'
     
     developmentOnly 'org.springframework.boot:spring-boot-devtools'

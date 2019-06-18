@@ -1,6 +1,5 @@
-package cn.org.szdaxh.portal.admin.controller;
+package cn.org.szdaxh.portal.common;
 
-import com.sun.deploy.net.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +16,7 @@ import javax.servlet.http.HttpSession;
  * @version V2.1
  * @Datetime 2019/6/11
  */
-public abstract class BaseController {
+public class BaseController {
     @Autowired
     protected HttpServletRequest request;
 

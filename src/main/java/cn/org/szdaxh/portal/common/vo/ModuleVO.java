@@ -25,6 +25,7 @@ import java.util.List;
 @Data
 public class ModuleVO implements Serializable {
     public static final String MODULE_SESSION_KEY = "navBars";
+    public static final String BREADCRUMB_SESSION_KEY = "breadcrumbs";
     private static final long serialVersionUID = -327016587826009015L;
     private Long id;
     private Integer ordinal;
