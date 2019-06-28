@@ -3,6 +3,7 @@ package cn.org.szdaxh.portal.common.vo;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>Title: //TODO </p>
@@ -18,7 +19,7 @@ import java.io.Serializable;
 public class UserSession implements Serializable {
     public static final String USER_SESSION_KEY="portal_admin_session";
     private static final long serialVersionUID = -6018956502823031454L;
-
+    List<ModuleVO> modules;
     private String userName;
     private String password;
 }

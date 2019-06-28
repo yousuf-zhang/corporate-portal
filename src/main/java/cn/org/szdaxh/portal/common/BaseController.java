@@ -1,6 +1,8 @@
 package cn.org.szdaxh.portal.common;
 
+import cn.org.szdaxh.portal.common.vo.MessageVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +19,7 @@ import javax.servlet.http.HttpSession;
  * @Datetime 2019/6/11
  */
 public class BaseController {
+    protected final String PAGE_DATA = "pageData";
     @Autowired
     protected HttpServletRequest request;
 

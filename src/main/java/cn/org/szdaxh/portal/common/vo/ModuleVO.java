@@ -1,12 +1,11 @@
 package cn.org.szdaxh.portal.common.vo;
 
+import cn.org.szdaxh.portal.common.entity.Information;
 import cn.org.szdaxh.portal.common.entity.Module;
+import cn.org.szdaxh.portal.common.enums.ModuleType;
 import com.google.common.base.Converter;
-import com.google.common.collect.Lists;
-import lombok.Builder;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import lombok.Data;
-import org.checkerframework.checker.nullness.qual.Nullable;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.BeanUtils;
 
 import java.io.Serializable;
@@ -23,31 +22,26 @@ import java.util.List;
  * @Datetime 2019/6/11
  */
 @Data
-public class ModuleVO implements Serializable {
+public class ModuleVO extends BaseConverter<ModuleVO, Module> {
     public static final String MODULE_SESSION_KEY = "navBars";
-    public static final String BREADCRUMB_SESSION_KEY = "breadcrumbs";
+    public static final String BREADCRUMB_KEY = "breadcrumbs";
+    public static final String SINGLE_BUTTON_KEY = "singleButton";
+    public static final String BATCH_BUTTON_KEY = "batchButton";
+
     private static final long serialVersionUID = -327016587826009015L;
     private Long id;
     private Integer ordinal;
     private String name;
     private String url;
     private Long parentId;
-    private Boolean expanded;
+    private ModuleType type;
+    private String methodName;
     private List<ModuleVO> children;
 
-    public ModuleVO() {
-        this.expanded = Boolean.FALSE;
-    }
+    public ModuleVO() { }
 
-    public ModuleVO convertBack(Module module) {
-        return convert().reverse().convert(module);
-    }
-
-    public Module convertFor(ModuleVO moduleVO) {
-       return convert().convert(moduleVO);
-    }
-
-    private Converter<ModuleVO, Module> convert() {
+    @Override
+    protected Converter<ModuleVO, Module> convert() {
         return Converter.from(moduleVO -> {
             if (moduleVO == null) {
                 return null;

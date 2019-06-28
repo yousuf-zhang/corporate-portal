@@ -1,10 +1,12 @@
 package cn.org.szdaxh.portal.admin.controller;
 
 import cn.org.szdaxh.portal.common.BaseController;
+import cn.org.szdaxh.portal.common.vo.ModuleVO;
 import cn.org.szdaxh.portal.common.vo.UserSession;
 import cn.org.szdaxh.portal.service.LoginService;
 import cn.org.szdaxh.portal.service.ModuleService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,13 +38,15 @@ public class LoginController extends BaseController {
     }
 
     @PostMapping("/login")
-    public String login(UserSession userSession) {
+    public String login(UserSession userSession, ModelMap modelMap) {
         UserSession session = loginService.loginVerify(userSession);
         if (session == null) {
-            return "redirect: /admin/login";
+            return "redirect:/admin/login";
         }
         getSession().setAttribute(UserSession.USER_SESSION_KEY, session);
-        getSession().setAttribute("navBars", moduleService.findModuleVOS());
-        return "/admin/index";
+        getSession().setAttribute(ModuleVO.MODULE_SESSION_KEY, moduleService.findNavBars(session.getModules()));
+       // modelMap.put(ModuleVO.BREADCRUMB_KEY, moduleService.findModuleBreadcrumb("admin/index", session.getModules
+        // ()));
+        return "redirect:/admin/index";
     }
 }

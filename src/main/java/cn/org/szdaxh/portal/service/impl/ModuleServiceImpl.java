@@ -1,5 +1,6 @@
 package cn.org.szdaxh.portal.service.impl;
 
+import cn.org.szdaxh.portal.common.enums.ModuleType;
 import cn.org.szdaxh.portal.repo.ModuleRepo;
 import cn.org.szdaxh.portal.service.ModuleService;
 import cn.org.szdaxh.portal.common.entity.Module;
@@ -11,6 +12,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * <p>Title: //TODO </p>
@@ -43,17 +45,20 @@ public class ModuleServiceImpl implements ModuleService {
     @Override
     public List<ModuleVO> findModuleVOS() {
         List<Module> modules = moduleRepo.findAll();
+        List<ModuleVO> moduleVOS = Lists.newArrayList();
+        modules.forEach(module -> moduleVOS.add(new ModuleVO().convertBack(module)));
+        return moduleVOS;
+    }
+
+    @Override
+    public List<ModuleVO> findNavBars(List<ModuleVO> modules) {
         List<ModuleVO> navBars = Lists.newArrayList();
         findParentModuleVO(modules, navBars);
-        if (navBars.size() > 0) {
-            navBars.get(0).setExpanded(true);
-        }
         return navBars;
     }
 
     @Override
-    public List<ModuleVO> findModuleBreadcrumb(String url) {
-        List<Module> modules = moduleRepo.findAll();
+    public List<ModuleVO> findModuleBreadcrumb(String url, List<ModuleVO> modules) {
         List<ModuleVO> moduleVOS = Lists.newArrayList();
         ModuleVO moduleVO = findModuleVO(url, modules);
         moduleVOS.add(moduleVO);
@@ -62,45 +67,49 @@ public class ModuleServiceImpl implements ModuleService {
         return moduleVOS;
     }
 
-    private void findModuleVO(ModuleVO moduleVO, List<Module> modules, List<ModuleVO> moduleVOS) {
+    @Override
+    public List<ModuleVO> findButtons(String url, List<ModuleVO> modules, ModuleType moduleType) {
+        ModuleVO parent = findModuleVO(url, modules);
+        return modules.stream()
+                .filter(moduleVO -> Objects.equals(moduleVO.getParentId(), parent.getId()))
+                .filter(moduleVO -> moduleVO.getType() == moduleType)
+                .sorted(Comparator.comparing(ModuleVO::getOrdinal))
+                .collect(Collectors.toList());
+    }
+
+    private void findModuleVO(ModuleVO moduleVO, List<ModuleVO> modules, List<ModuleVO> moduleVOS) {
         if (!Objects.equals(moduleVO.getParentId(), 0L)) {
-            ModuleVO vo = new ModuleVO().convertBack(modules.stream()
+            ModuleVO vo =modules.stream()
                     .filter(module -> Objects.equals(module.getId(), moduleVO.getParentId()))
-                    .findFirst().orElseThrow(() -> new RuntimeException("获取模块异常")));
+                    .findFirst().orElseThrow(() -> new RuntimeException("获取模块异常"));
             moduleVOS.add(vo);
             findModuleVO(vo, modules, moduleVOS);
         }
     }
 
-    private ModuleVO findModuleVO(String url, List<Module> modules) {
-        return new ModuleVO()
-                .convertBack(modules.stream()
+    private ModuleVO findModuleVO(String url, List<ModuleVO> modules) {
+        Module index = new Module(1,"首页", "", 0L);
+        index.setId(-100L);
+        return modules.stream()
                 .filter(module -> Objects.equals(url, module.getUrl()))
                 .findFirst()
-                .orElse(modules.stream()
-                .filter(module -> module.getParentId().equals(0L))
-                .min(Comparator.comparing(Module::getOrdinal))
-                .orElseThrow(() -> new RuntimeException("获取模块失败"))));
+                .orElse(new ModuleVO().convertBack(index));
     }
 
-    private void findParentModuleVO(List<Module> modules, List<ModuleVO> navBars) {
+    private void findParentModuleVO(List<ModuleVO> modules, List<ModuleVO> navBars) {
         modules.stream()
         .filter(module -> Objects.equals(module.getParentId(), 0L))
-        .sorted(Comparator.comparing(Module::getOrdinal))
+        .sorted(Comparator.comparing(ModuleVO::getOrdinal))
         .forEach(module -> findChildrenModuleVO(modules, navBars, module));
     }
 
-    private void findChildrenModuleVO(List<Module> modules, List<ModuleVO> navBars, Module module) {
-        ModuleVO parentVO = new ModuleVO().convertBack(module);
+    private void findChildrenModuleVO(List<ModuleVO> modules, List<ModuleVO> navBars, ModuleVO parent) {
         List<ModuleVO> childrenVO = Lists.newArrayList();
         modules.stream()
-            .filter(child -> Objects.equals(child.getParentId(), module.getId()))
-            .sorted(Comparator.comparing(Module::getOrdinal))
-            .forEach(child -> {
-                ModuleVO childVO = new ModuleVO().convertBack(child);
-                childrenVO.add(childVO);
-            });
-        parentVO.setChildren(childrenVO);
-        navBars.add(parentVO);
+            .filter(child -> Objects.equals(child.getParentId(), parent.getId()))
+            .sorted(Comparator.comparing(ModuleVO::getOrdinal))
+            .forEach(childrenVO::add);
+        parent.setChildren(childrenVO);
+        navBars.add(parent);
     }
 }

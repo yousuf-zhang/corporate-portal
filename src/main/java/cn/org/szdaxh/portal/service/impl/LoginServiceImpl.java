@@ -2,6 +2,7 @@ package cn.org.szdaxh.portal.service.impl;
 
 import cn.org.szdaxh.portal.common.vo.UserSession;
 import cn.org.szdaxh.portal.service.LoginService;
+import cn.org.szdaxh.portal.service.ModuleService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,9 +17,16 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class LoginServiceImpl implements LoginService {
+    private final ModuleService moduleService;
+
+    public LoginServiceImpl(ModuleService moduleService) {
+        this.moduleService = moduleService;
+    }
+
     @Override
     public UserSession loginVerify(UserSession userSession) {
         UserSession session = new UserSession();
+        session.setModules(moduleService.findModuleVOS());
         return session;
     }
 }

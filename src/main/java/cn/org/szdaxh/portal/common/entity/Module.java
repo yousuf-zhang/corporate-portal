@@ -1,9 +1,9 @@
 package cn.org.szdaxh.portal.common.entity;
 
-import lombok.Builder;
+import cn.org.szdaxh.portal.common.enums.ModuleType;
 import lombok.Data;
+import sun.security.pkcs11.Secmod;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -23,12 +23,14 @@ import javax.persistence.Table;
 public class Module extends BaseEntity {
     private static final long serialVersionUID = 5379112984668774429L;
     private Integer ordinal;
-    @Column(unique = true)
     private String name;
     private String url;
     private Long parentId;
+    private ModuleType type;
+    private String methodName;
 
     public Module() { }
+
 
     public Module(Integer ordinal, String name, String url, Long parentId) {
         this.ordinal = ordinal;

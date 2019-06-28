@@ -1,6 +1,7 @@
 package cn.org.szdaxh.portal.service;
 
 import cn.org.szdaxh.portal.common.entity.Module;
+import cn.org.szdaxh.portal.common.enums.ModuleType;
 import cn.org.szdaxh.portal.common.vo.ModuleVO;
 import com.google.common.collect.Lists;
 import org.junit.Test;
@@ -24,21 +25,19 @@ import static org.junit.Assert.assertThat;
  * @version V2.1
  * @Datetime 2019/6/11
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
 public class ModuleServiceTest {
     @Autowired
     private ModuleService moduleService;
 
     @Test
     public void should_return_module_by_save() {
-        Module module = new Module();
-        module.setName("系统管理111");
-        module.setOrdinal(1);
-        module.setParentId(0L);
+        Module module = new Module(1, "新增公告", "/admin/announcement/add", 18L);
+        module.setType(ModuleType.BATCH_BUTTON);
         Module save = moduleService.save(module);
         assertThat(save.getId() != null, is(true));
-        moduleService.delete(save);
+//        moduleService.delete(save);
 //        init();
     }
 
@@ -51,11 +50,26 @@ public class ModuleServiceTest {
         assertThat(moduleVOS.get(1).getChildren().get(0).getName(), is("信息列表"));
     }
 
+    @Test
+    public void test_card_type() {
+        int type = 0x0000;
+        int master = type | 0x0001;
+        int visa = type | 0x0002;
+        int am = type | 0x0004;
+        int all = 0x0001 | 0x0002 | 0x0004 | 0x0008 | 0x0010 | 0x0020 | 0x0040 | 0x0080;
+        System.out.println(visa & 0x0002);
+        System.out.println(master & 0x0001);
+        System.out.println(am & 0x0004);
+    }
+
     private void init() {
-        Module module = new Module(2, "信息公开", "", 0L);
+        Module module = new Module(3, "通知公告", "", 0L);
         Module save = moduleService.save(module);
-        Lists.newArrayList(new Module(1, "信息列表", "admin/info/list", save.getId()),
-                new Module(2, "信息动态", "admin/info/dynamic", save.getId()))
+//        Lists.newArrayList(new Module(1, "公告列表", "admin/info/list", save.getId()),
+//                new Module(2, "信息动态", "admin/info/dynamic", save.getId()))
+//                .forEach(module1 -> moduleService.save(module1));
+
+        Lists.newArrayList(new Module(1, "公告列表", "/admin/announcement/list", save.getId()))
                 .forEach(module1 -> moduleService.save(module1));
     }
 }

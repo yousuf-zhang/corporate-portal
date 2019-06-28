@@ -1,6 +1,7 @@
 package cn.org.szdaxh.portal.service;
 
 import cn.org.szdaxh.portal.common.entity.Module;
+import cn.org.szdaxh.portal.common.enums.ModuleType;
 import cn.org.szdaxh.portal.common.vo.ModuleVO;
 
 import java.util.List;
@@ -21,5 +22,10 @@ public interface ModuleService {
 
     List<ModuleVO> findModuleVOS();
 
-    List<ModuleVO> findModuleBreadcrumb(String url);
+    List<ModuleVO> findNavBars(List<ModuleVO> modules);
+
+    List<ModuleVO> findModuleBreadcrumb(String url, List<ModuleVO> modules);
+
+    List<ModuleVO> findButtons(String url, List<ModuleVO> modules, ModuleType singleButton);
+
 }

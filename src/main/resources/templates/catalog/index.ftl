@@ -6,7 +6,7 @@
       </@common.card>
     </div>
     <div class="col-sm-6">
-      <@common.card "测试", "carousel-height", "">
+      <@common.card "通知公告", "carousel-height", "">
       </@common.card>
     </div>
   </div>
