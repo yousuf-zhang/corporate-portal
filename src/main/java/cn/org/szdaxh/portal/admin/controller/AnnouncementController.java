@@ -61,4 +61,35 @@ public class AnnouncementController extends BaseController {
                 .addModelMap(map)
                 .view();
     }
+
+    @GetMapping("/update")
+    public String updateAnnouncement(Long id, ModelMap map) {
+        InformationVO vo = informationService.findAnnouncementById(id);
+        map.put("announcement", vo);
+        return "/admin/announcement/update";
+    }
+
+    @PostMapping("/update")
+    public String updateAnnouncement(InformationVO announcement, ModelMap map) {
+        informationService.updateInformation(announcement);
+        return MessageVO.builder()
+                .content("修改公告成功")
+                .url("admin/announcement/list")
+                .type(MessageVO.MessageType.SUCCESS)
+                .build()
+                .addModelMap(map)
+                .view();
+    }
+
+    @GetMapping("/delete")
+    public String deleteAnnouncement(Long id, ModelMap map) {
+        informationService.deleteAnnouncement(id);
+        return MessageVO.builder()
+                .content("删除公告成功")
+                .url("admin/announcement/list")
+                .type(MessageVO.MessageType.SUCCESS)
+                .build()
+                .addModelMap(map)
+                .view();
+    }
 }

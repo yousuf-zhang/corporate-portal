@@ -1,14 +1,11 @@
 package cn.org.szdaxh.portal.common.vo;
 
-import cn.org.szdaxh.portal.common.entity.Information;
 import cn.org.szdaxh.portal.common.entity.Module;
 import cn.org.szdaxh.portal.common.enums.ModuleType;
 import com.google.common.base.Converter;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**

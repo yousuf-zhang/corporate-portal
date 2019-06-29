@@ -1,8 +1,6 @@
 package cn.org.szdaxh.portal.common;
 
-import cn.org.szdaxh.portal.common.vo.MessageVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

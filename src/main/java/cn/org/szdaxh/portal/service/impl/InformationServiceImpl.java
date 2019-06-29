@@ -40,4 +40,22 @@ public class InformationServiceImpl implements InformationService {
         Page<Information> pages = informationRepo.findAll(PageRequest.valueOf(pageRequest));
         return PageData.of(pages, pageRequest);
     }
+
+    @Override
+    public InformationVO findAnnouncementById(Long id) {
+        return new InformationVO().convertBack(informationRepo.findById(id).orElse(null));
+    }
+
+    @Override
+    public void updateInformation(InformationVO announcement) {
+        Information information = informationRepo.getOne(announcement.getId());
+        information.setContent(announcement.getContent());
+        information.setTitle(announcement.getTitle());
+        informationRepo.save(information);
+    }
+
+    @Override
+    public void deleteAnnouncement(Long id) {
+        informationRepo.deleteById(id);
+    }
 }

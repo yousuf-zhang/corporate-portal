@@ -19,4 +19,10 @@ public interface InformationService {
     void saveInformation(InformationVO informationVO);
 
     PageData<Information> listInformationPages(PageRequest pageRequest);
+
+    InformationVO findAnnouncementById(Long id);
+
+    void updateInformation(InformationVO announcement);
+
+    void deleteAnnouncement(Long id);
 }

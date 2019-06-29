@@ -22,6 +22,6 @@ public class InformationController extends BaseController {
     @GetMapping("/list")
     public String listInfo() {
 
-        return "/admin/info/info_list";
+        return "/admin/info/info-list";
     }
 }

@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-header">
     <#list batchButton as button>
-      <button type="button" id="${button.methodName}" data-url="${basePath}/${button.url}"
+      <button type="button" onclick="${button.methodName}(this)" data-url="${basePath}/${button.url}"
               class="btn btn-outline-primary btn-sm">${button.name}</button>
     </#list>
     </div>
@@ -18,11 +18,16 @@
         </thead>
         <tbody>
         <#list pageData.data as data>
-        <tr>
-          <th scope="row">${data.id}</th>
-          <td>${data.title}</td>
-          <td>${data.modifyAt?date('yyyy-MM-dd')}</td>
-          <td>@mdo</td>
+        <tr data-id="${data.id}">
+          <th scope="row" width="35px">${data.id}</th>
+          <td width="60%">${data.title}</td>
+          <td width="15%">${data.modifyAt?date('yyyy-MM-dd')}</td>
+          <td width="25%">
+            <#list singleButton as btn>
+              <button type="button" onclick="${btn.methodName}(this)" data-url="${basePath}/${btn.url!}"
+                      class="btn btn-outline-primary btn-sm">${btn.name!}</button>
+            </#list>
+          </td>
         </tr>
         </#list>
         </tbody>
@@ -38,12 +43,19 @@
 
 </@admin.layout>
 <script>
+  function addAnnouncement(btn) {
+    window.location.href = $(btn).attr("data-url");
+  }
+
+  function updateAnnouncement(btn) {
+    window.location.href=$(btn).attr("data-url")+"?id="+$(btn).parents("tr").attr("data-id");
+  }
+  function deleteAnnouncement(btn) {
+    window.location.href = $(btn).attr("data-url")+"?id=" + $(btn).parents("tr").attr("data-id");
+  }
   (function (window) {
     "use strict";
     var App = window.App;
-    $("#addAnnouncement").click(function () {
-      window.location.href = $(this).attr("data-url");
-    });
 
     new App.Pagination("announcementId");
   })(window);

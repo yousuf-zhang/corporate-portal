@@ -19,32 +19,32 @@
       <div class="col-sm-2"></div>
     </div>
   </form>
-</@admin.layout>
-<script>
-  (function (window) {
+  <script>
+    (function (window) {
       var App = window.App;
       App.Ueditor.getEditor("content", {initialFrameHeight: 300});
 
       $("#annForm").validation({
-          rules: {
-              title: {
-                  required: true,
-                  maxLength: 200
-              },
-              content: {
-                  required: true
-              }
+        rules: {
+          title: {
+            required: true,
+            maxLength: 200
           },
-          messages: {
-              title: {
-                  required: '请填写标题信息',
-                  maxLength:'最多长度为200'
-              },
-              content: {
-                  required: '公告内容不能为空'
-              }
+          content: {
+            required: true
           }
+        },
+        messages: {
+          title: {
+            required: '请填写标题信息',
+            maxLength:'最多长度为200'
+          },
+          content: {
+            required: '公告内容不能为空'
+          }
+        }
 
       });
-  })(window)
-</script>
+    })(window)
+  </script>
+</@admin.layout>

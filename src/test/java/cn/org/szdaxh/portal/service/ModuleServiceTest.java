@@ -25,16 +25,17 @@ import static org.junit.Assert.assertThat;
  * @version V2.1
  * @Datetime 2019/6/11
  */
-//@RunWith(SpringRunner.class)
-//@SpringBootTest
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class ModuleServiceTest {
     @Autowired
     private ModuleService moduleService;
 
     @Test
     public void should_return_module_by_save() {
-        Module module = new Module(1, "新增公告", "/admin/announcement/add", 18L);
-        module.setType(ModuleType.BATCH_BUTTON);
+        Module module = new Module(2, "修改公告", "/admin/announcement/delete", 16L);
+        module.setType(ModuleType.SINGLE_BUTTON);
+        module.setMethodName("deleteAnnouncement");
         Module save = moduleService.save(module);
         assertThat(save.getId() != null, is(true));
 //        moduleService.delete(save);
