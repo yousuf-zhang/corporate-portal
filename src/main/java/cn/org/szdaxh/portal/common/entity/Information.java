@@ -21,6 +21,7 @@ import javax.persistence.*;
 public class Information extends BaseEntity {
     private static final long serialVersionUID = -2813006351995591958L;
     private String title;
+    private Integer ordinal;
     private InfoTypeEnum type;
     @Lob
     @Basic(fetch = FetchType.LAZY)

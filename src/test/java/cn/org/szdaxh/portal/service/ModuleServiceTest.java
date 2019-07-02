@@ -33,9 +33,9 @@ public class ModuleServiceTest {
 
     @Test
     public void should_return_module_by_save() {
-        Module module = new Module(2, "修改公告", "/admin/announcement/delete", 16L);
+        Module module = new Module(1, "删除信息", "admin/info/delete", 12L);
         module.setType(ModuleType.SINGLE_BUTTON);
-        module.setMethodName("deleteAnnouncement");
+        module.setMethodName("deleteInformation");
         Module save = moduleService.save(module);
         assertThat(save.getId() != null, is(true));
 //        moduleService.delete(save);

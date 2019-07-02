@@ -1,9 +1,12 @@
 package cn.org.szdaxh.portal.service;
 
 import cn.org.szdaxh.portal.common.entity.Information;
+import cn.org.szdaxh.portal.common.enums.InfoTypeEnum;
 import cn.org.szdaxh.portal.common.vo.InformationVO;
 import cn.org.szdaxh.portal.common.vo.page.PageData;
 import cn.org.szdaxh.portal.common.vo.page.PageRequest;
+
+import java.util.List;
 
 /**
  * <p>Title: //TODO </p>
@@ -18,11 +21,13 @@ import cn.org.szdaxh.portal.common.vo.page.PageRequest;
 public interface InformationService {
     void saveInformation(InformationVO informationVO);
 
-    PageData<Information> listInformationPages(PageRequest pageRequest);
+    PageData<Information> listInformationPages(PageRequest pageRequest, InformationVO informationVO);
 
-    InformationVO findAnnouncementById(Long id);
+    InformationVO findInformationById(Long id);
 
     void updateInformation(InformationVO announcement);
 
-    void deleteAnnouncement(Long id);
+    void deleteInformationById(Long id);
+
+    List<Information> listInformationByType(InfoTypeEnum information);
 }

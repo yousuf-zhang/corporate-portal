@@ -25,6 +25,7 @@ public class InformationVO extends BaseConverter<InformationVO, Information>{
     private InfoTypeEnum type;
     private String title;
     private String content;
+    private Integer ordinal;
     protected LocalDateTime createAt;
     protected LocalDateTime modifyAt;
 

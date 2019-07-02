@@ -1,6 +1,9 @@
 package cn.org.szdaxh.portal.repo;
 
 import cn.org.szdaxh.portal.common.entity.Information;
+import cn.org.szdaxh.portal.common.enums.InfoTypeEnum;
+
+import java.util.List;
 
 /**
  * <p>Title: //TODO </p>
@@ -13,4 +16,5 @@ import cn.org.szdaxh.portal.common.entity.Information;
  * @Datetime 2019/6/27
  */
 public interface InformationRepo extends BaseRepo<Information, Long> {
+    List<Information> findAllByType(InfoTypeEnum type);
 }

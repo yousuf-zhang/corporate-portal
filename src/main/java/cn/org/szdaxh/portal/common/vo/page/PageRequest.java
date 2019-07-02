@@ -23,12 +23,14 @@ public class PageRequest {
     private String sorts;
 
     public void initSort() {
-        if (sorts != null) {
-            Sort.Direction direction = Sort.Direction
-                    .fromOptionalString(this.direction)
-                    .orElse(Sort.Direction.DESC);
-            this.sort = Sort.by(direction, sorts.trim().split(" +"));
+        if (sorts == null) {
+            this.sorts = "modifyAt";
         }
+
+        Sort.Direction direction = Sort.Direction
+                .fromOptionalString(this.direction)
+                .orElse(Sort.Direction.DESC);
+        this.sort = Sort.by(direction, sorts.trim().split(" +"));
     }
 
     public static Pageable valueOf(PageRequest request) {

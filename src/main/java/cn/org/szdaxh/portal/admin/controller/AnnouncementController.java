@@ -37,9 +37,9 @@ public class AnnouncementController extends BaseController {
 
     @GetMapping("/list")
     public String listAnnouncement(PageRequest pageRequest, ModelMap modelMap) {
-        pageRequest.setSize(2);
-        PageData<Information> pages = informationService.listInformationPages(pageRequest);
-        log.info(pages.toString());
+        InformationVO informationVO = new InformationVO();
+        informationVO.setType(InfoTypeEnum.ANNOUNCEMENT);
+        PageData<Information> pages = informationService.listInformationPages(pageRequest, informationVO);
         modelMap.put(PAGE_DATA, pages);
         return "/admin/announcement/list";
     }
@@ -51,7 +51,7 @@ public class AnnouncementController extends BaseController {
 
     @PostMapping("/add")
     public String addAnnouncement (InformationVO informationVO, ModelMap map) {
-        informationVO.setType(InfoTypeEnum.INFORMATION);
+        informationVO.setType(InfoTypeEnum.ANNOUNCEMENT);
         informationService.saveInformation(informationVO);
         return MessageVO.builder()
                 .content("新增公告成功")
@@ -64,7 +64,7 @@ public class AnnouncementController extends BaseController {
 
     @GetMapping("/update")
     public String updateAnnouncement(Long id, ModelMap map) {
-        InformationVO vo = informationService.findAnnouncementById(id);
+        InformationVO vo = informationService.findInformationById(id);
         map.put("announcement", vo);
         return "/admin/announcement/update";
     }
@@ -83,7 +83,7 @@ public class AnnouncementController extends BaseController {
 
     @GetMapping("/delete")
     public String deleteAnnouncement(Long id, ModelMap map) {
-        informationService.deleteAnnouncement(id);
+        informationService.deleteInformationById(id);
         return MessageVO.builder()
                 .content("删除公告成功")
                 .url("admin/announcement/list")

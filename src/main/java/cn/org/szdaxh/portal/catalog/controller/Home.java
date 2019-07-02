@@ -1,13 +1,21 @@
 package cn.org.szdaxh.portal.catalog.controller;
 
 import cn.org.szdaxh.portal.common.BaseController;
+import cn.org.szdaxh.portal.common.entity.Information;
 import cn.org.szdaxh.portal.common.enums.InfoTypeEnum;
+import cn.org.szdaxh.portal.common.vo.InformationVO;
 import cn.org.szdaxh.portal.common.vo.NoticeVO;
+import cn.org.szdaxh.portal.common.vo.page.PageData;
+import cn.org.szdaxh.portal.common.vo.page.PageRequest;
+import cn.org.szdaxh.portal.service.InformationService;
+import jdk.nashorn.internal.ir.IfNode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -21,6 +29,11 @@ import java.util.List;
  */
 @Controller
 public class Home extends BaseController {
+    private final InformationService informationService;
+
+    public Home(InformationService informationService) {
+        this.informationService = informationService;
+    }
 
     @GetMapping("/")
     public String index() {
@@ -46,7 +59,35 @@ public class Home extends BaseController {
         return "/catalog/index";
     }
 
-    @GetMapping("/test")
-    public String test() {return "/catalog/test/test";}
+    @GetMapping("/announcement/list")
+    @ResponseBody
+    public PageData<Information> listAnnouncement(PageRequest request) {
+        InformationVO informationVO = new InformationVO();
+        informationVO.setType(InfoTypeEnum.ANNOUNCEMENT);
+        return informationService.listInformationPages(request, informationVO);
+    }
+
+    @GetMapping("/announcement")
+    public String findAnnouncement(Long id, ModelMap map) {
+        InformationVO informationVO = informationService.findInformationById(id);
+        map.put("announcement", informationVO);
+        return "/catalog/announcement/detail";
+    }
+
+    @GetMapping("/information")
+    public String findInformation(Long id, ModelMap map) {
+        List<Information> informationList = informationService.listInformationByType(InfoTypeEnum.INFORMATION);
+        informationList.sort(Comparator.comparing(Information::getOrdinal));
+        Information information;
+        if (id == null) {
+            information = informationList.get(0);
+        } else {
+            InformationVO informationVO = informationService.findInformationById(id);
+            information = informationVO.convertFor(informationVO);
+        }
+        map.put("information", information);
+        map.put("informationList", informationList);
+        return "/catalog/info/detail";
+    }
 
 }

@@ -43,7 +43,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         String url = request.getRequestURI().substring(1);
         UserSession userSession = (UserSession) request.getSession().getAttribute(UserSession.USER_SESSION_KEY);
-        if (!url.equals("admin/ueditor/config")) {
+        if (userSession != null && !url.equals("admin/ueditor/config")) {
             List<ModuleVO> breadcrumb = moduleService.findModuleBreadcrumb(url, userSession.getModules());
             List<ModuleVO> singleButtons = moduleService.findButtons(url, userSession.getModules(), ModuleType.SINGLE_BUTTON);
             List<ModuleVO> batchButtons = moduleService.findButtons(url, userSession.getModules(), ModuleType.BATCH_BUTTON);

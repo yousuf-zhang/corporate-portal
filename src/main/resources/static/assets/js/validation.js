@@ -72,6 +72,13 @@
             },
             maxLength: function (value, element) {
                 return getLength(element) > value;
+            },
+            number: function(value, element) {
+                var regexp = "^\\d+$";
+                return regExp(regexp, element);
+            },
+            regExp: function (value, element) {
+                return regExp(value, element);
             }
         },
         elements: function () {
@@ -172,6 +179,13 @@
             case "input":
                 return element.getValue().length;
         }
+    }
+
+    function regExp(value, element) {
+        if (!value) {
+            return true;
+        }
+        return !new RegExp(value).test(element.getValue());
     }
     $.fn.validation = function (options) {
         new Validation(this, options);

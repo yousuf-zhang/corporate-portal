@@ -49,4 +49,10 @@ public class LoginController extends BaseController {
         // ()));
         return "redirect:/admin/index";
     }
+
+    @GetMapping("/logout")
+    public String logout() {
+        getSession().removeAttribute(UserSession.USER_SESSION_KEY);
+        return "redirect:/admin/login";
+    }
 }

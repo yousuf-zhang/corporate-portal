@@ -17,7 +17,7 @@
           <li class="nav-item active">
             <a class="nav-link" href="${basePath}/index">首页 <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item active"><a class="nav-link" href="#">信息公开</a></li>
+          <li class="nav-item active"><a class="nav-link" href="${basePath}/information">信息公开</a></li>
           <li class="nav-item active"><a class="nav-link" href="#">档案培训</a></li>
           <li class="nav-item active"><a class="nav-link" href="#">职称评定</a></li>
           <li class="nav-item active"><a class="nav-link" href="#">中介备案</a></li>

@@ -1,24 +1,27 @@
 <@catalog.layout title="首页">
   <div class="row mt-2">
     <div class="col-sm-6 pr-0">
-      <@common.card "", "border-light carousel-height", "m-0 p-0">
+      <@common.card class="border-light carousel-height" bodyClass="m-0 p-0">
         <@common.carousel "index_carousel", carousel, "carousel-height"></@common.carousel>
       </@common.card>
     </div>
     <div class="col-sm-6">
-      <@common.card "通知公告", "carousel-height", "">
+      <@common.card title="通知公告" class="carousel-height" refreshId="refresh">
+        <ul class="list-unstyled" id="announcementDiv" data-announcement-page='{"page": 1, "size": 10, "url":
+          "${basePath}/announcement/list", "detail-url": "${basePath}/announcement", "refresh-id": "refresh"}'>
+        </ul>
       </@common.card>
     </div>
   </div>
 
   <div class="row mt-2">
     <div class="col-sm-8 pr-0">
-      <@common.card "信息公开" "", "">
+      <@common.card title="信息公开">
         <@common.list information ></@common.list>
       </@common.card>
     </div>
     <div class="col-sm-4">
-      <@common.card "档案期刊" "", "">
+      <@common.card title="档案期刊">
         <div class="row pb-2">
           <div class="col-sm-4">
             <a href="#">
@@ -53,12 +56,12 @@
 
   <div class="row mt-2">
     <div class="col-sm-8 pr-0">
-      <@common.card "学会动态" "", "">
+      <@common.card title="学会动态">
         <@common.list information ></@common.list>
       </@common.card>
     </div>
     <div class="col-sm-4">
-      <@common.card "申请入会" "", "">
+      <@common.card title="申请入会">
         <button type="button" class="btn btn-danger btn-lg btn-block" style="height: 60px;">
           会员登记制度
         </button>
@@ -74,7 +77,7 @@
 
   <div class="row mt-2">
     <div class="col-sm-8 pr-0">
-      <@common.card "岗位培训" "", "">
+      <@common.card title="岗位培训">
         <div class="text-color">
           <img src="${basePath}/assets/images/img_px.jpg" class="w-100 p-0 m-0 mb-2 img-fluid" >
           名称：深圳市档案信息管理培训中心中心办学范围：档案、英语、文秘、经济管理、行政法规培训学校类型：成人非学历教育主管业务部门：
@@ -83,7 +86,7 @@
       </@common.card>
     </div>
     <div class="col-sm-4">
-      <@common.card "职称评定" "", "">
+      <@common.card title="职称评定">
         <img class="img-fluid pb-2" style="width: 100%" src="${basePath}/assets/images/img_zc.jpg">
         <div class="row  pb-2">
           <div class="col-sm-6">
@@ -115,18 +118,18 @@
 
   <div class="row mt-2">
     <div class="col-sm-8 pr-0">
-      <@common.card "继续教育" "", "">
+      <@common.card title="继续教育">
         <@common.list information ></@common.list>
       </@common.card>
     </div>
     <div class="col-sm-4">
-      <@common.card "会员风采" "", "">
+      <@common.card title="会员风采">
       </@common.card>
     </div>
   </div>
   <div class="row mt-2">
     <div class="col-sm-6 pr-0">
-      <@common.card "中介备案" "", "">
+      <@common.card title="中介备案">
         <img src="${basePath}/assets/images/intermediary.jpg" class="w-100 p-0 m-0 mb-2" >
         <div class="row ">
           <div class="col-sm-3 ">
@@ -153,7 +156,7 @@
       </@common.card>
     </div>
     <div class="col-sm-6">
-      <@common.card "档案装备" "", "">
+      <@common.card title="档案装备">
 
       </@common.card>
     </div>
