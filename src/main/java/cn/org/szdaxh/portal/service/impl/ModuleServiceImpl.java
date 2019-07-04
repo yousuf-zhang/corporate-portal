@@ -12,6 +12,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
+import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
 /**
@@ -86,6 +88,9 @@ public class ModuleServiceImpl implements ModuleService {
             findModuleVO(vo, modules, moduleVOS);
         }
     }
+
+
+
 
     private ModuleVO findModuleVO(String url, List<ModuleVO> modules) {
         Module index = new Module(1,"首页", "", 0L);

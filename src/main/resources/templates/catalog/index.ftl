@@ -25,8 +25,7 @@
         <div class="row pb-2">
           <div class="col-sm-4">
             <a href="#">
-              <img class="img-thumbnail" style="height: 100px;" src="${basePath}/assets/images/periodical/20164990656
-              .jpg">
+              <img class="img-thumbnail" style="height: 100px;" src="${basePath}/assets/images/periodical/20164990656.jpg">
             </a>
           </div>
           <div class="col-sm-4">

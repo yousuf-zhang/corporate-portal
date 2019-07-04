@@ -32,7 +32,7 @@
                        var $li = $('<li class="list-item"></li>');
                        var $a = $("<a></a>'");
                        $a.attr('href', info.data['detail-url'] +'?id=' +  this.id);
-                       // $a.attr("target", "_blank");
+                       $a.attr("target", "_blank");
                        var day = new Date().getTime() - new Date(this.modifyAt).getTime();
                        day = Math.floor(day/86400000);
                        var html =this.title;
